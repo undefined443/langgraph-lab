@@ -55,23 +55,4 @@ class Settings:
         return flag and bool(os.getenv("LANGSMITH_API_KEY"))
 
 
-def _mirror_langchain_env() -> None:
-    """Copy ``LANGSMITH_*`` vars to the legacy ``LANGCHAIN_*`` names.
-
-    Different releases of langchain-core look for one prefix or the other.
-    Mirroring keeps tracing working regardless of which one wins.
-    """
-    pairs = {
-        "LANGSMITH_TRACING": "LANGCHAIN_TRACING_V2",
-        "LANGSMITH_API_KEY": "LANGCHAIN_API_KEY",
-        "LANGSMITH_PROJECT": "LANGCHAIN_PROJECT",
-        "LANGSMITH_ENDPOINT": "LANGCHAIN_ENDPOINT",
-    }
-    for src, dst in pairs.items():
-        if os.getenv(src) and not os.getenv(dst):
-            os.environ[dst] = os.environ[src]
-
-
-_mirror_langchain_env()
-
 settings = Settings()
