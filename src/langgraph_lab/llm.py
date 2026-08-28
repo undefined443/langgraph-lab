@@ -11,12 +11,6 @@ from langchain_openai import ChatOpenAI
 
 from .config import settings
 
-# Optional OpenRouter ranking headers. Harmless on other gateways.
-_OPENROUTER_HEADERS = {
-    "HTTP-Referer": "https://github.com/langgraph-lab",
-    "X-Title": "langgraph-lab",
-}
-
 
 def build_chat_model(**overrides) -> ChatOpenAI:
     """Return a configured ``ChatOpenAI`` instance.
@@ -33,7 +27,5 @@ def build_chat_model(**overrides) -> ChatOpenAI:
         "base_url": settings.base_url,
         "api_key": settings.api_key,
     }
-    if "openrouter.ai" in settings.base_url:
-        params["default_headers"] = _OPENROUTER_HEADERS
     params.update(overrides)
     return ChatOpenAI(**params)
