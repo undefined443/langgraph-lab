@@ -10,10 +10,9 @@ Demonstrates:
 
 from __future__ import annotations
 
-import uuid
-
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.checkpoint.memory import MemorySaver
+from langsmith import uuid7
 from rich.console import Console
 from rich.panel import Panel
 
@@ -57,7 +56,7 @@ def _render_update(node: str, payload: dict) -> None:
 def run() -> None:
     """Start the read-eval-print loop."""
     graph = build_graph(checkpointer=MemorySaver())
-    thread_id = str(uuid.uuid4())
+    thread_id = str(uuid7())
     _print_banner()
 
     while True:
@@ -73,7 +72,7 @@ def run() -> None:
             console.print("bye")
             return
         if user_input == "/new":
-            thread_id = str(uuid.uuid4())
+            thread_id = str(uuid7())
             console.print(f"[dim]new thread {thread_id}[/dim]")
             continue
 
