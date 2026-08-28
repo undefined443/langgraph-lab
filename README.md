@@ -110,7 +110,7 @@ uv run langgraph dev
 
 Starts the local LangGraph API and Studio. In the browser you can visualise the
 graph, step through execution, inspect/edit state, and time-travel. The entry
-point in `langgraph.json` points at `graph.py:graph`.
+point in `langgraph.json` points at `langgraph_lab.graph:graph`.
 
 ## Notes
 
