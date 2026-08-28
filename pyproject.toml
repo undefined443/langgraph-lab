@@ -1,0 +1,30 @@
+[project]
+name = "langgraph-lab"
+version = "0.1.0"
+description = "A minimal LangGraph + LangSmith demo: a hand-built ReAct agent with tracing and evaluation"
+readme = "README.md"
+authors = [
+    { name = "Xiao Li", email = "xiaoli3397@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "langchain>=0.3",
+    "langchain-anthropic>=1.7.0",
+    "langchain-openai>=1.6.0",
+    "langgraph>=1.2.11",
+    "langsmith>=0.11.2",
+    "python-dotenv>=1.2.3",
+    "rich>=15.0.0",
+]
+
+[project.scripts]
+langgraph-lab = "langgraph_lab:main"
+
+[build-system]
+requires = ["uv_build>=0.12.6,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "langgraph-cli[inmem]>=0.4.31",
+]
